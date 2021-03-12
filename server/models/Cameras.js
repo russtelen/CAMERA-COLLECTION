@@ -20,11 +20,15 @@ const cameraSchema = new Schema({
     type: Number,
     required: true,
   },
+  filmType: {
+    type: String,
+    enum: ["120", "35mm", "Digital", "Polaroid"],
+  },
   description: {
-    type: Number,
+    type: String,
     required: true,
   },
-  collection: {
+  _collection: {
     type: Schema.Types.ObjectId,
     ref: "Collection",
   },
