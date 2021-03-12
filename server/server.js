@@ -3,6 +3,13 @@
 // ==========
 const express = require("express");
 const { connectDb } = require("./models/db");
+const session = require("express-session");
+
+// REQUIRE-AUTH
+//---------------
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/Users");
 
 // ==========
 // CONFIG
@@ -16,6 +23,26 @@ app.use(express.json()); // JSON
 
 // Connect to db
 connectDb();
+
+// Express Session
+const sessionConfig = {
+  secret: "secretCode",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // expires in 1 week
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
+app.use(session(sessionConfig));
+
+// Passport/Auth
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // ==========
 // ROUTES
