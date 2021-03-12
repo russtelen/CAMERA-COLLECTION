@@ -9,16 +9,13 @@ let atlasDb = process.env.db;
 
 module.exports.connectDb = async () => {
   try {
-    const res = await mongoose.connect(
-      "mongodb://localhost:27017/camera-collection",
-      {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-      }
-    );
+    await mongoose.connect("mongodb://localhost:27017/camera-collection", {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    });
 
-    res ? console.log("MONGO CONNECTED") : null;
+    console.log("MONGO CONNECTED");
   } catch (e) {
     console.log("MONGO CONNECTION ERROR :(");
     console.log(e);
