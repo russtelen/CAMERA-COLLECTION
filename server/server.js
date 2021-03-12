@@ -24,6 +24,21 @@ app.get("/", (req, res) => {
   res.send({ message: "works !" });
 });
 
+//==============================================
+// Error Handlers
+// =============================================
+app.all("*", (req, res, next) => {
+  next(new ExpressError("Page not found", 404));
+});
+
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) {
+    err.message = "Oh no, Something went wrong";
+  }
+  res.status(statusCode).send({ error: err.message, status: statusCode });
+});
+
 // ==========
 // LISTEN
 // ==========
