@@ -10,6 +10,7 @@ const {
   getCollectionById,
   createCollection,
   updateCollection,
+  deleteCollection,
 } = require("../controller/collections");
 
 // ==============================================
@@ -18,6 +19,10 @@ const {
 
 router.route("/").get(getAllCollections).post(createCollection);
 
-router.route("/:id").get(getCollectionById).patch(updateCollection);
+router
+  .route("/:id")
+  .get(getCollectionById)
+  .patch(updateCollection)
+  .delete(deleteCollection);
 
 module.exports = router;

@@ -80,7 +80,7 @@ module.exports.createCollection = catchAsync(async (req, res) => {
 });
 
 // @ PATCH
-// @ Update a Collection
+// @ Update a Collection by ID
 module.exports.updateCollection = catchAsync(async (req, res) => {
   const { id } = req.params;
   const collection = await Collection.findByIdAndUpdate(id, req.body);
@@ -98,4 +98,19 @@ module.exports.updateCollection = catchAsync(async (req, res) => {
   res.send({
     message: "Error updating collection",
   });
+});
+
+// @ DELETE
+// @ Delete a collection by ID
+module.exports.deleteCollection = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const collection = await Collection.findByIdAndDelete(id);
+  const cameras = await Camera.deleteMany({ _collection: id });
+
+  if (collection) {
+    res.send({ message: `Succesfully deleted ${collection.title}` });
+    return;
+  }
+
+  res.send({ error: `Error deleting ${collection.title}` });
 });
