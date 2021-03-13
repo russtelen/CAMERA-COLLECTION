@@ -52,7 +52,7 @@ passport.deserializeUser(User.deserializeUser());
 // ROUTES
 // ==========
 app.use("/api/collections", collectionRoutes);
-app.use("/api/collections", userRoutes);
+app.use("/api/users", userRoutes);
 
 //==============================================
 // Error Handlers
