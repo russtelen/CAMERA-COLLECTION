@@ -3,7 +3,7 @@
 // =============================================
 const User = require("../models/Users");
 const catchAsync = require("../utils/catchAsync");
-
+const { generateToken } = require("../utils/jwt");
 // =============================================
 // Logic
 // =============================================
@@ -23,8 +23,18 @@ module.exports.registerUser = catchAsync(async (req, res) => {
 
     const user = req.user;
 
-    // send back id, username and email to client
-    res.send({ _id: user._id, username: user.username, email: user.email });
+    if (user) {
+      // generate token
+      const accessToken = generateToken({
+        _id: user._id,
+        email: user.email,
+        username: user.username,
+      });
+
+      // send back token
+      res.send({ accessToken });
+      return;
+    }
   });
 });
 
@@ -33,8 +43,19 @@ module.exports.registerUser = catchAsync(async (req, res) => {
 module.exports.loginUser = (req, res) => {
   const user = req.user;
   if (user) {
-    // send back id, username and email to client
-    res.send({ _id: user._id, username: user.username, email: user.email });
+    // generate token
+    const accessToken = generateToken({
+      _id: user._id,
+      email: user.email,
+      username: user.username,
+    });
+
+    // send back token
+    res.send({ accessToken });
     return;
   }
+
+  res.send({
+    message: "Error loggin in",
+  });
 };
