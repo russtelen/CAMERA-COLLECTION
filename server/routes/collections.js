@@ -8,18 +8,15 @@ const catchAsync = require("../utils/catchAsync");
 const {
   getAllCollections,
   getCollectionById,
+  createCollection,
 } = require("../controller/collections");
 
 // ==============================================
 // ROUTES
 // ==============================================
 
-// @ GET
-// @ All Collections
-router.route("/").get(getAllCollections);
+router.route("/").get(getAllCollections).post(createCollection);
 
-// @ GET
-// @ Collection by ID
 router.route("/:id").get(getCollectionById);
 
 module.exports = router;
