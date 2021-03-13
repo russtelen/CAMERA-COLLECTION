@@ -54,7 +54,7 @@ passport.deserializeUser(User.deserializeUser());
 // ==========
 app.use("/api/collections", collectionRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/collections/:id/cameras", cameraRoutes);
+app.use("/api/cameras", cameraRoutes);
 
 //==============================================
 // Error Handlers
