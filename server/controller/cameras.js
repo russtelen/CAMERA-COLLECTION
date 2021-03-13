@@ -19,3 +19,11 @@ module.exports.getAllCameras = catchAsync(async (req, res) => {
 
 // @ GET
 // @ Camera by id
+module.exports.getCameraById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const camera = await Camera.findById(id)
+    .populate("user", "-password")
+    .populate("_collection", "title");
+
+  res.send({ camera });
+});
