@@ -26,7 +26,7 @@ router.route("/").get(getAllCollections).post(requireLogin, createCollection);
 router
   .route("/:id")
   .get(getCollectionById)
-  .patch(updateCollection)
-  .delete(deleteCollection);
+  .patch(requireLogin, isCollectionAuthor, updateCollection)
+  .delete(requireLogin, isCollectionAuthor, deleteCollection);
 
 module.exports = router;
