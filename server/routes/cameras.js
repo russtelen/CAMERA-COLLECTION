@@ -9,4 +9,5 @@ const { getAllCameras } = require("../controller/cameras");
 // ROUTES
 // ==============================================
 router.route("/").get(getAllCameras);
+
 module.exports = router;

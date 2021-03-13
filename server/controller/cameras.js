@@ -11,6 +11,11 @@ const catchAsync = require("../utils/catchAsync");
 // @ GET
 // @ All Cameras
 module.exports.getAllCameras = catchAsync(async (req, res) => {
-  const cameras = await Camera.find({}).populate("user", "-password");
+  const cameras = await Camera.find({})
+    .populate("user", "-password")
+    .populate("_collection", "title");
   res.send({ cameras });
 });
+
+// @ GET
+// @ Camera by id
