@@ -14,6 +14,7 @@ const User = require("./models/Users");
 //---------------
 const collectionRoutes = require("./routes/collections");
 const userRoutes = require("./routes/users");
+const cameraRoutes = require("./routes/cameras");
 
 // ==========
 // CONFIG
@@ -53,6 +54,7 @@ passport.deserializeUser(User.deserializeUser());
 // ==========
 app.use("/api/collections", collectionRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/collections/:id/cameras", cameraRoutes);
 
 //==============================================
 // Error Handlers
