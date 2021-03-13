@@ -46,12 +46,12 @@ module.exports.createCollection = catchAsync(async (req, res) => {
   const { title } = req.body;
 
   // Get from sesssion/user token
-  const user = "604bfe847b44d5816a49ace1"; // Russ' ID (hardcoded for now)
+  // const user = "604bfe847b44d5816a49ace1";
 
   // Add new collection
   const collection = await new Collection({
     title,
-    user,
+    user: req.user._id,
   });
 
   if (collection) {

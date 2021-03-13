@@ -21,7 +21,7 @@ const {
 // ROUTES
 // ==============================================
 
-router.route("/").get(getAllCollections).post(createCollection);
+router.route("/").get(getAllCollections).post(requireLogin, createCollection);
 
 router
   .route("/:id")
