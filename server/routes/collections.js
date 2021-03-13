@@ -9,6 +9,7 @@ const {
   getAllCollections,
   getCollectionById,
   createCollection,
+  updateCollection,
 } = require("../controller/collections");
 
 // ==============================================
@@ -17,6 +18,6 @@ const {
 
 router.route("/").get(getAllCollections).post(createCollection);
 
-router.route("/:id").get(getCollectionById);
+router.route("/:id").get(getCollectionById).patch(updateCollection);
 
 module.exports = router;

@@ -4,10 +4,10 @@
 const Collection = require("../models/Collections");
 const Camera = require("../models/Cameras");
 const catchAsync = require("../utils/catchAsync");
+
 // =============================================
 // Logic
 // =============================================
-
 // @ GET
 // @ All Collections
 module.exports.getAllCollections = catchAsync(async (req, res) => {
@@ -76,5 +76,26 @@ module.exports.createCollection = catchAsync(async (req, res) => {
   // Send back error to client
   res.send({
     message: "There was an error creating a new collection",
+  });
+});
+
+// @ PATCH
+// @ Update a Collection
+module.exports.updateCollection = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const collection = await Collection.findByIdAndUpdate(id, req.body);
+
+  if (collection) {
+    await collection.save();
+    const newCollection = await Collection.findById(collection._id);
+    res.send({
+      message: "Successfully updated collection",
+      collection: newCollection,
+    });
+    return;
+  }
+
+  res.send({
+    message: "Error updating collection",
   });
 });
