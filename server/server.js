@@ -13,6 +13,7 @@ const User = require("./models/Users");
 // REQUIRE-ROUTERS
 //---------------
 const collectionRoutes = require("./routes/collections");
+const userRoutes = require("./routes/users");
 
 // ==========
 // CONFIG
@@ -50,11 +51,8 @@ passport.deserializeUser(User.deserializeUser());
 // ==========
 // ROUTES
 // ==========
-// app.get("/", (req, res) => {
-//   res.send({ message: "works !" });
-// });
-
 app.use("/api/collections", collectionRoutes);
+app.use("/api/collections", userRoutes);
 
 //==============================================
 // Error Handlers
