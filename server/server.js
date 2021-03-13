@@ -10,6 +10,9 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/Users");
+// REQUIRE-ROUTERS
+//---------------
+const collectionRoutes = require("./routes/collections");
 
 // ==========
 // CONFIG
@@ -47,9 +50,11 @@ passport.deserializeUser(User.deserializeUser());
 // ==========
 // ROUTES
 // ==========
-app.get("/", (req, res) => {
-  res.send({ message: "works !" });
-});
+// app.get("/", (req, res) => {
+//   res.send({ message: "works !" });
+// });
+
+app.use("/api/collections", collectionRoutes);
 
 //==============================================
 // Error Handlers
