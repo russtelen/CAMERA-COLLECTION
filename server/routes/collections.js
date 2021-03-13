@@ -12,6 +12,10 @@ const {
   updateCollection,
   deleteCollection,
 } = require("../controller/collections");
+const {
+  requireLogin,
+  isCollectionAuthor,
+} = require("../middlewares/middlewares");
 
 // ==============================================
 // ROUTES

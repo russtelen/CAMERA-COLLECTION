@@ -1,3 +1,6 @@
+// =============================================
+// REQUIRE
+// =============================================
 const jwt = require("jsonwebtoken");
 
 // Create a secret key for signing the token
