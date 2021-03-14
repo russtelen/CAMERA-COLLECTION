@@ -9,9 +9,9 @@ const catchAsync = require("../utils/catchAsync");
 // Logic
 // =============================================
 // @ GET
-// @ All Cameras || All Cameras by Collections using query || All Cameras by User
+// @ All Cameras || All Cameras by Collections using query
 module.exports.getAllCameras = catchAsync(async (req, res) => {
-  const { collectionId, userId } = req.query;
+  const { collectionId } = req.query;
 
   const cameras = await Camera.find({})
     .populate("user", "-password")
@@ -21,15 +21,8 @@ module.exports.getAllCameras = catchAsync(async (req, res) => {
     .populate("user", "-password")
     .populate("_collection", "title");
 
-  const camerasByUser = await Camera.find({ user: userId });
-
   if (collectionId) {
     res.send({ camerasByCollection });
-    return;
-  }
-
-  if (userId) {
-    res.send({ camerasByUser });
     return;
   }
 
