@@ -63,3 +63,18 @@ module.exports.createCamera = catchAsync(async (req, res) => {
 
   res.send({ message: "successfully added new camera" });
 });
+
+//  @ PATCH
+//  @ Update camera
+module.exports.updateCamera = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const camera = await Camera.findByIdAndUpdate(id, req.body);
+
+  if (camera) {
+    await camera.save();
+    res.send({ message: `Successfully updated camera ${camera._id}` });
+    return;
+  }
+
+  res.send({ message: `Faled to update camera ${camera._id}` });
+});
