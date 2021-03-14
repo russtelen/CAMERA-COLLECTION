@@ -8,6 +8,7 @@ const {
   getCameraById,
   createCamera,
   updateCamera,
+  deleteCamera,
 } = require("../controller/cameras");
 const { requireLogin } = require("../middlewares/middlewares");
 
@@ -15,7 +16,11 @@ const { requireLogin } = require("../middlewares/middlewares");
 // ROUTES
 // ==============================================
 router.route("/").get(getAllCameras);
-router.route("/:id").get(getCameraById).patch(updateCamera);
+router
+  .route("/:id")
+  .get(getCameraById)
+  .patch(updateCamera)
+  .delete(deleteCamera);
 router.route("/collections/:collectionId").post(requireLogin, createCamera);
 
 module.exports = router;

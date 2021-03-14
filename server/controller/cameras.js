@@ -78,3 +78,17 @@ module.exports.updateCamera = catchAsync(async (req, res) => {
 
   res.send({ message: `Faled to update camera ${camera._id}` });
 });
+
+// @ DELETE
+// @ Delete camera
+module.exports.deleteCamera = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const camera = await Camera.findByIdAndDelete(id);
+
+  if (camera) {
+    res.send({ message: `Successfully deleted camera ${camera._id}` });
+    return;
+  }
+
+  res.send({ message: `Error deleting` });
+});
