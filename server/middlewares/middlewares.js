@@ -3,6 +3,7 @@
 // =============================================
 const jwt = require("jsonwebtoken");
 const Collection = require("../models/Collections");
+const Camera = require("../models/Cameras.js");
 
 // Middleware to AUTHENTICATE user (collections)
 module.exports.requireLogin = (req, res, next) => {
@@ -58,6 +59,35 @@ module.exports.isCollectionAuthor = async (req, res, next) => {
 
   // Check if decoded token (user._id) === collection.user._id
   if (!collection.user._id.equals(decodedUser._id)) {
+    res.send({ message: "You are not authorized to do that" });
+    return;
+  }
+
+  next();
+};
+
+// Middleware to AUTHORIZE user (cameras)
+module.exports.isCameraAuthor = async (req, res, next) => {
+  const { id } = req.params;
+  const { authorization } = req.headers;
+
+  const camera = await Camera.findById(id);
+
+  const token = authorization ? authorization.split(" ")[1] : null;
+
+  if (!token) {
+    console.error("no token sent to server");
+    res.status(401).send({ error: "no token sent to server" });
+    return;
+  }
+
+  // Decode token
+  let decodedUser;
+  const secret = process.env.ACCESS_TOKEN_SECRET || "my secret";
+  decodedUser = jwt.verify(token, secret);
+
+  // Check if decoded token (user._id) === collection.user._id
+  if (!camera.user._id.equals(decodedUser._id)) {
     res.send({ message: "You are not authorized to do that" });
     return;
   }
