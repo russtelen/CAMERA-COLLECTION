@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import SideNavPage from "../SideNavPage";
@@ -23,12 +29,33 @@ const Dashboard = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <HeaderPage drawer={drawer} />
+      <Router>
+        <HeaderPage drawer={drawer} />
 
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <CollectionPage />
-      </main>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/collections" />
+            </Route>
+            <Route exact path="/collections">
+              <CollectionPage />
+            </Route>
+            <Route exact path="/cameras">
+              <p>Cameras</p>
+            </Route>
+            <Route exact path="/addNewCollection">
+              <p>Add new collection form</p>
+            </Route>
+            <Route exact path="/login">
+              <p>Login form</p>
+            </Route>
+            <Route exact path="/register">
+              <p>Register form</p>
+            </Route>
+          </Switch>
+        </main>
+      </Router>
     </div>
   );
 };

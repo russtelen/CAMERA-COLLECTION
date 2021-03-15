@@ -1,25 +1,27 @@
 import React from "react";
 import SideNav from "../../components/SideNav";
+import { useHistory } from "react-router-dom";
 
 const SideNavPage = () => {
+  const history = useHistory();
   const collectionsClicked = () => {
-    console.log("View all collections");
+    history.push("/collections");
   };
 
   const camerasClicked = () => {
-    console.log("View all cameras");
+    history.push("/cameras");
   };
 
   const addNewCollectionClicked = () => {
-    console.log("add new collection form");
+    history.push("/addNewCollection");
   };
 
   const loginClicked = () => {
-    console.log("login form ");
+    history.push("/login");
   };
 
   const registerClicked = () => {
-    console.log("register form");
+    history.push("/register");
   };
 
   const logoutClicked = () => {
@@ -27,12 +29,12 @@ const SideNavPage = () => {
   };
   return (
     <SideNav
-      collectionsClicked={collectionsClicked}
-      camerasClicked={camerasClicked}
-      addNewCollectionClicked={addNewCollectionClicked}
-      loginClicked={loginClicked}
-      registerClicked={registerClicked}
-      logoutClicked={logoutClicked}
+      collectionsClicked={() => collectionsClicked()}
+      camerasClicked={() => camerasClicked()}
+      addNewCollectionClicked={() => addNewCollectionClicked()}
+      loginClicked={() => loginClicked()}
+      registerClicked={() => registerClicked()}
+      logoutClicked={() => logoutClicked()}
     />
   );
 };

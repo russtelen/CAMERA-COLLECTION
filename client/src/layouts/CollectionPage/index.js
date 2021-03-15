@@ -18,7 +18,7 @@ const CollectionPage = () => {
         {!collections
           ? "Loading ...."
           : collections.map((collection) => (
-              <div className="col-sm-12 col-md-4">
+              <div className="col-sm-12 col-md-4 mb-4">
                 <CollectionItem
                   key={collection._id}
                   collection={{ ...collection }}
