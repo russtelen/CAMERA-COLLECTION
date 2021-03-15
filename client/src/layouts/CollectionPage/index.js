@@ -1,40 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CollectionItem from "../../components/CollectionItem";
+import { getAllCollections } from "../../network";
 
 const CollectionPage = () => {
-  const collection = {
-    cameras: [
-      {
-        _id: "604c4555ea7fe68e75af3e5a",
-        title: "Canon P",
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/5/5c/Canon_p01.jpg",
-        year: 1959,
-        filmType: "35mm",
-        _collection: "604c4555ea7fe68e75af3e57",
-        description:
-          "The Canon P (P for Populaire) was a rangefinder camera produced by Canon Inc., compatible with the Leica M39 screw mount (LTM). It was introduced in March 1959 and was marketed as a low-cost sister to the Canon VI-L. A black version was also introduced, which today is quite rare. The Canon P is the predecessor to the Canon 7 rangefinder.",
-        user: {
-          _id: "604c4554ea7fe68e75af3e54",
-          email: "russ@gmail.com",
-          username: "russ",
-          __v: 0,
-        },
-        __v: 0,
-      },
-    ],
-    _id: "604c4555ea7fe68e75af3e57",
-    title: "Rangefinder",
-    user: {
-      _id: "604c4554ea7fe68e75af3e54",
-      email: "russ@gmail.com",
-      username: "russ",
-      __v: 0,
-    },
-    __v: 4,
-  };
+  const [collections, setCollections] = useState([]);
 
-  return <CollectionItem collection={{ ...collection }} />;
+  useEffect(() => {
+    (async () => {
+      const data = await getAllCollections();
+      setCollections(data);
+    })();
+  }, []);
+
+  return (
+    <div className="container">
+      <div className="row">
+        {!collections
+          ? "Loading ...."
+          : collections.map((collection) => (
+              <div className="col-sm-12 col-md-4">
+                <CollectionItem
+                  key={collection._id}
+                  collection={{ ...collection }}
+                />
+              </div>
+            ))}
+      </div>
+    </div>
+  );
 };
 
 export default CollectionPage;
