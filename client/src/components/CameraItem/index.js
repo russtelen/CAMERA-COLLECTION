@@ -27,7 +27,7 @@ const CameraItem = ({
         <CardMedia
           component="img"
           alt={camera.title}
-          height="140"
+          height="300"
           image={camera.imageUrl}
           title={camera.title}
         />

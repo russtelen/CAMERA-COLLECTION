@@ -19,19 +19,22 @@ const CollectionPage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row d-flex justify-content-center">
-        {!collections
-          ? "Loading ...."
-          : collections.map((collection) => (
-              <div className="col-sm-12 col-md-4 mb-4">
-                <CollectionItem
-                  key={collection._id}
-                  collection={{ ...collection }}
-                  cardClicked={() => cardClicked(collection._id)}
-                />
-              </div>
-            ))}
+    <div>
+      <h1 className="text-center">Collections</h1>
+      <div className="container my-5">
+        <div className="row d-flex justify-content-center">
+          {!collections
+            ? "Loading ...."
+            : collections.map((collection) => (
+                <div className="col-sm-12 col-md-4 mb-4">
+                  <CollectionItem
+                    key={collection._id}
+                    collection={{ ...collection }}
+                    cardClicked={() => cardClicked(collection._id)}
+                  />
+                </div>
+              ))}
+        </div>
       </div>
     </div>
   );
