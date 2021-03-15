@@ -9,3 +9,9 @@ export const getAllCollections = async () => {
     console.log(e);
   }
 };
+
+export const getCollectionById = async (id) => {
+  const res = await axios.get(`/api/collections/${id}`);
+  const data = res.data;
+  return data.collection;
+};
