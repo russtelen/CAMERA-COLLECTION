@@ -12,11 +12,15 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    width: 800,
+    width: "80vw",
     height: "80vh",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  image: {
+    width: "100%",
+    maxHeight: 900,
   },
 }));
 
@@ -27,11 +31,30 @@ const CameraDetail = ({ camera }) => {
 
   return (
     <div style={modalStyle} className={classes.paper}>
-      {camera ? <h2 id="simple-modal-title">{camera.title}</h2> : null}
+      {!camera ? (
+        "Loading..."
+      ) : (
+        <>
+          <div className="d-flex justify-content-between">
+            <h2>{camera.title}</h2>
+            <h2>Year: {camera.year}</h2>
+          </div>
 
-      <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </p>
+          <div className="my-4">
+            <div className="row">
+              <div className="col-sm-12 col-md-7 ">
+                <img src={camera.imageUrl} className={classes.image} />
+              </div>
+              <div className="col-sm-12 col-md-5">
+                <h3>Description</h3>
+                <p>{camera.description}</p>
+                <h3>Film Type</h3>
+                <p>{camera.filmType} film</p>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
