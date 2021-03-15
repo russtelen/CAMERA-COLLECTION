@@ -14,7 +14,7 @@ const CollectionPage = () => {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row d-flex justify-content-center">
         {!collections
           ? "Loading ...."
           : collections.map((collection) => (
