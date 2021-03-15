@@ -21,9 +21,14 @@ const CameraItem = ({
   cameraDeleteClicked,
 }) => {
   const classes = useStyles();
+
+  const setCamera = () => {
+    cameraCardClicked(camera);
+  };
+
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={() => cameraCardClicked()}>
+      <CardActionArea onClick={() => setCamera()}>
         <CardMedia
           component="img"
           alt={camera.title}
