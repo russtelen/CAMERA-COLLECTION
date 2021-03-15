@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import SideNavPage from "../SideNavPage";
 import HeaderPage from "../HeaderPage";
 import CollectionPage from "../CollectionPage";
+import CollectionDetailPage from "../CollectionDetailPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +43,7 @@ const Dashboard = () => {
               <CollectionPage />
             </Route>
             <Route exact path="/collections/:collectionId">
-              <p>Collection detail</p>
+              <CollectionDetailPage />
             </Route>
             <Route exact path="/cameras">
               <p>Cameras</p>
