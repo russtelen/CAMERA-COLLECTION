@@ -19,7 +19,7 @@ const CollectionItem = ({ collection, cardClicked }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} onClick={() => cardClicked}>
+    <Card className={classes.root} onClick={() => cardClicked()}>
       <CardActionArea>
         <CardMedia
           className={classes.media}

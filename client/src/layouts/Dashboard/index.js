@@ -41,6 +41,9 @@ const Dashboard = () => {
             <Route exact path="/collections">
               <CollectionPage />
             </Route>
+            <Route exact path="/collections/:collectionId">
+              <p>Collection detail</p>
+            </Route>
             <Route exact path="/cameras">
               <p>Cameras</p>
             </Route>

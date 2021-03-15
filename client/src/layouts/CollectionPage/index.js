@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import CollectionItem from "../../components/CollectionItem";
 import { getAllCollections } from "../../network";
 
 const CollectionPage = () => {
   const [collections, setCollections] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -11,6 +13,10 @@ const CollectionPage = () => {
       setCollections(data);
     })();
   }, []);
+
+  const cardClicked = (id) => {
+    history.push(`/collections/${id}`);
+  };
 
   return (
     <div className="container">
@@ -22,6 +28,7 @@ const CollectionPage = () => {
                 <CollectionItem
                   key={collection._id}
                   collection={{ ...collection }}
+                  cardClicked={() => cardClicked(collection._id)}
                 />
               </div>
             ))}
