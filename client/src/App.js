@@ -1,14 +1,12 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import Dashboard from "./layouts/Dashboard";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Camera Collection</p>
-      </header>
+    <div>
+      <Dashboard />
     </div>
   );
-}
+};
 
 export default App;
