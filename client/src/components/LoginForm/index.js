@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -14,7 +14,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 const LoginForm = ({ submit }) => {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
+  const submitLoginForm = (e) => {
+    e.preventDefault();
+    submit({ username, password });
+    setUsername("");
+    setPassword("");
+  };
   return (
     <div className="container d-flex justify-content-center">
       <div style={{ width: "30vw" }}>
@@ -25,6 +33,7 @@ const LoginForm = ({ submit }) => {
               <div className="row">
                 <div className="col-12 my-2">
                   <TextField
+                    type="text"
                     id="standard-basic"
                     label="Username"
                     fullWidth
@@ -32,11 +41,13 @@ const LoginForm = ({ submit }) => {
                     margin="dense"
                     required
                     variant="filled"
-                    value={""}
+                    value={username || ""}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
                 <div className="col-12 my-2">
                   <TextField
+                    type="password"
                     id="standard-basic"
                     label="Password"
                     fullWidth
@@ -44,7 +55,8 @@ const LoginForm = ({ submit }) => {
                     margin="dense"
                     required
                     variant="filled"
-                    value={""}
+                    value={password || ""}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className="col-12 d-flex justify-content-center my-2">
@@ -54,6 +66,7 @@ const LoginForm = ({ submit }) => {
                     size="large"
                     endIcon={<LockOpenIcon />}
                     fullWidth
+                    onClick={(e) => submitLoginForm(e)}
                   >
                     Login
                   </Button>
