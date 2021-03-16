@@ -11,6 +11,7 @@ import SideNavPage from "../SideNavPage";
 import HeaderPage from "../HeaderPage";
 import CollectionPage from "../CollectionPage";
 import CollectionDetailPage from "../CollectionDetailPage";
+import LoginPage from "../LoginPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +53,7 @@ const Dashboard = () => {
               <p>Add new collection form</p>
             </Route>
             <Route exact path="/login">
-              <p>Login form</p>
+              <LoginPage />
             </Route>
             <Route exact path="/register">
               <p>Register form</p>
