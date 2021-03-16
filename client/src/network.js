@@ -32,3 +32,13 @@ export const loginUser = async (data) => {
     alert("Incorrect username or password");
   }
 };
+
+export const logoutUser = async () => {
+  try {
+    const res = await axios.post("/api/users/logout");
+    const data = res.data;
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};

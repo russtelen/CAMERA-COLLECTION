@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import SideNav from "../../components/SideNav";
 import { useHistory } from "react-router-dom";
+import { logoutUser } from "../../network";
 
 const SideNavPage = () => {
   const { user } = useContext(UserContext);
@@ -26,8 +27,12 @@ const SideNavPage = () => {
     history.push("/register");
   };
 
-  const logoutClicked = () => {
-    console.log("loggedout !");
+  const logoutClicked = async () => {
+    const data = await logoutUser();
+    if (data) {
+      localStorage.removeItem("token");
+      alert("logged out !");
+    }
   };
   return (
     <SideNav
