@@ -1,4 +1,5 @@
 import axios from "axios";
+import toastr from "toastr";
 
 export const getAllCollections = async () => {
   try {
@@ -29,7 +30,7 @@ export const loginUser = async (data) => {
     return accessToken;
   } catch (e) {
     console.log(e);
-    alert("Incorrect username or password");
+    toastr["error"]("Incorrect username/password", "Login Error");
   }
 };
 

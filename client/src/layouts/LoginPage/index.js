@@ -5,6 +5,7 @@ import jwtDecode from "jwt-decode";
 import useLocalStorage from "react-use-localstorage";
 import { loginUser } from "../../network";
 import { UserContext } from "../../context/UserContext";
+import toastr from "toastr";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -18,6 +19,10 @@ const LoginPage = () => {
         setToken(accessToken);
         setTimeout(() => {
           history.push("/collections");
+          toastr["success"](
+            `Welcome to your Camera Collection`,
+            "Login Success"
+          );
         }, 500);
         return;
       }
