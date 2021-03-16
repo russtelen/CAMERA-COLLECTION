@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import SideNav from "../../components/SideNav";
 import { useHistory } from "react-router-dom";
 
 const SideNavPage = () => {
+  const { user } = useContext(UserContext);
   const history = useHistory();
   const collectionsClicked = () => {
     history.push("/collections");
@@ -29,6 +31,7 @@ const SideNavPage = () => {
   };
   return (
     <SideNav
+      user={user && user}
       collectionsClicked={() => collectionsClicked()}
       camerasClicked={() => camerasClicked()}
       addNewCollectionClicked={() => addNewCollectionClicked()}
