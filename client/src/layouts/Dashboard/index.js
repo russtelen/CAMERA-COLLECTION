@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -12,6 +12,7 @@ import HeaderPage from "../HeaderPage";
 import CollectionPage from "../CollectionPage";
 import CollectionDetailPage from "../CollectionDetailPage";
 import LoginPage from "../LoginPage";
+import { UserContext } from "../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,8 +26,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Dashboard = () => {
+  const { user } = useContext(UserContext);
   const classes = useStyles();
+
   const drawer = <SideNavPage />;
+
+  const PrivateRoute = ({ path, children }) => {
+    return (
+      <Route path={path}>{!!user ? children : <Redirect to="/login" />}</Route>
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -37,21 +46,21 @@ const Dashboard = () => {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>
-            <Route exact path="/">
+            <PrivateRoute exact path="/">
               <Redirect to="/collections" />
-            </Route>
-            <Route exact path="/collections">
+            </PrivateRoute>
+            <PrivateRoute exact path="/collections">
               <CollectionPage />
-            </Route>
-            <Route exact path="/collections/:collectionId">
+            </PrivateRoute>
+            <PrivateRoute exact path="/collections/:collectionId">
               <CollectionDetailPage />
-            </Route>
-            <Route exact path="/cameras">
+            </PrivateRoute>
+            <PrivateRoute exact path="/cameras">
               <p>Cameras</p>
-            </Route>
-            <Route exact path="/addNewCollection">
+            </PrivateRoute>
+            <PrivateRoute exact path="/addNewCollection">
               <p>Add new collection form</p>
-            </Route>
+            </PrivateRoute>
             <Route exact path="/login">
               <LoginPage />
             </Route>
