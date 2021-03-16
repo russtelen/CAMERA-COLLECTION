@@ -29,6 +29,6 @@ export const loginUser = async (data) => {
     return accessToken;
   } catch (e) {
     console.log(e);
-    console.log("Incorrect username or password");
+    alert("Incorrect username or password");
   }
 };

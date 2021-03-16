@@ -10,7 +10,7 @@ const LoginPage = () => {
   const submit = async (data) => {
     try {
       const accessToken = await loginUser(data);
-      setToken(accessToken);
+      accessToken && setToken(accessToken);
     } catch (e) {
       console.log(e);
     }
