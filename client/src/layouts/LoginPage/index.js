@@ -16,7 +16,9 @@ const LoginPage = () => {
       const accessToken = await loginUser(data);
       if (accessToken) {
         setToken(accessToken);
-        history.push("/collections");
+        setTimeout(() => {
+          history.push("/collections");
+        }, 500);
         return;
       }
     } catch (e) {

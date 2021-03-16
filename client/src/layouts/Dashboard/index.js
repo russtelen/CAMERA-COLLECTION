@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -12,7 +12,7 @@ import HeaderPage from "../HeaderPage";
 import CollectionPage from "../CollectionPage";
 import CollectionDetailPage from "../CollectionDetailPage";
 import LoginPage from "../LoginPage";
-import { UserContext } from "../../context/UserContext";
+import useLocalStorage from "react-use-localstorage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,14 +26,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Dashboard = () => {
-  const { user } = useContext(UserContext);
+  const [token] = useLocalStorage("token");
   const classes = useStyles();
 
   const drawer = <SideNavPage />;
 
   const PrivateRoute = ({ path, children }) => {
     return (
-      <Route path={path}>{!!user ? children : <Redirect to="/login" />}</Route>
+      <Route path={path}>{!!token ? children : <Redirect to="/login" />}</Route>
     );
   };
 
