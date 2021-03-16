@@ -1,6 +1,5 @@
 import React from "react";
 import CameraItem from "../CameraItem";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 const CollectionDetail = ({
   collection,
@@ -11,7 +10,9 @@ const CollectionDetail = ({
   return (
     <div className="container">
       {!collection ? (
-        <CircularProgress />
+        <h2 className="text-center">
+          You are not authorized to view this page
+        </h2>
       ) : (
         <>
           <h1 className="text-center">{collection.title}</h1>

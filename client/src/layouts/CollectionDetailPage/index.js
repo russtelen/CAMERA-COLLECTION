@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import CameraDetail from "../../components/CameraDetail";
 import Modal from "@material-ui/core/Modal";
 import { useParams } from "react-router-dom";
@@ -7,6 +8,7 @@ import CollectionDetail from "../../components/CollectionDetail";
 
 const CollectionDetailPage = () => {
   const [collection, setCollection] = useState(null);
+  const { user } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const [camera, setCamera] = useState(null);
 
@@ -15,7 +17,16 @@ const CollectionDetailPage = () => {
   useEffect(() => {
     (async () => {
       const data = await getCollectionById(collectionId);
-      setCollection(data);
+
+      let userData;
+
+      if (data.user.username == user?.username) {
+        userData = data;
+      }
+
+      if (userData) {
+        setCollection(userData);
+      }
     })();
   }, [collectionId]);
 
