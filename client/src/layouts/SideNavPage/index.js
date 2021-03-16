@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { logoutUser } from "../../network";
 
 const SideNavPage = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const history = useHistory();
   const collectionsClicked = () => {
     history.push("/collections");
@@ -31,6 +31,7 @@ const SideNavPage = () => {
     const data = await logoutUser();
     if (data) {
       localStorage.removeItem("token");
+      setUser(null);
       alert("logged out !");
     }
   };
