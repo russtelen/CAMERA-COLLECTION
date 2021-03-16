@@ -10,13 +10,16 @@ const SideNavPage = () => {
   const history = useHistory();
   const collectionsClicked = () => {
     if (!user) {
-      return toastr["warning"](`You need to be logged in to do that`);
+      history.push("/login");
+      toastr["warning"](`You need to be logged in to do that`);
+      return;
     }
     history.push("/collections");
   };
 
   const camerasClicked = () => {
     if (!user) {
+      history.push("/login");
       return toastr["warning"](`You need to be logged in to do that`);
     }
     history.push("/cameras");
@@ -24,6 +27,7 @@ const SideNavPage = () => {
 
   const addNewCollectionClicked = () => {
     if (!user) {
+      history.push("/login");
       return toastr["warning"](`You need to be logged in to do that`);
     }
     history.push("/addNewCollection");
