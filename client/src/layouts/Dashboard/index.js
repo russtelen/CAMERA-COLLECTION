@@ -1,18 +1,19 @@
-import React from "react";
+import React from "react"
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch,
-} from "react-router-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles } from "@material-ui/core/styles";
-import SideNavPage from "../SideNavPage";
-import HeaderPage from "../HeaderPage";
-import CollectionPage from "../CollectionPage";
-import CollectionDetailPage from "../CollectionDetailPage";
-import LoginPage from "../LoginPage";
-import useLocalStorage from "react-use-localstorage";
+} from "react-router-dom"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import { makeStyles } from "@material-ui/core/styles"
+import SideNavPage from "../SideNavPage"
+import HeaderPage from "../HeaderPage"
+import CollectionPage from "../CollectionPage"
+import CollectionDetailPage from "../CollectionDetailPage"
+import LoginPage from "../LoginPage"
+import useLocalStorage from "react-use-localstorage"
+import NewCollectionFormPage from "../NewCollectionFormPage"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,18 +25,18 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-}));
+}))
 const Dashboard = () => {
-  const [token] = useLocalStorage("token");
-  const classes = useStyles();
+  const [token] = useLocalStorage("token")
+  const classes = useStyles()
 
-  const drawer = <SideNavPage />;
+  const drawer = <SideNavPage />
 
   const PrivateRoute = ({ path, children }) => {
     return (
       <Route path={path}>{!!token ? children : <Redirect to="/login" />}</Route>
-    );
-  };
+    )
+  }
 
   return (
     <div className={classes.root}>
@@ -59,7 +60,7 @@ const Dashboard = () => {
               <p>Cameras</p>
             </PrivateRoute>
             <PrivateRoute exact path="/addNewCollection">
-              <p>Add new collection form</p>
+              <NewCollectionFormPage />
             </PrivateRoute>
             <Route exact path="/login">
               <LoginPage />
@@ -71,7 +72,7 @@ const Dashboard = () => {
         </main>
       </Router>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
