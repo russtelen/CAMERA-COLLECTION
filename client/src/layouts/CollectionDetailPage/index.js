@@ -58,6 +58,10 @@ const CollectionDetailPage = () => {
     toastr["error"]("Error deleting collection")
   }
 
+  const newCameraClicked = () => {
+    history.push(`/collections/${collectionId}/addNewCamera`)
+  }
+
   const cameraCardClicked = (data) => {
     setCamera(data)
     handleOpen()
@@ -82,6 +86,7 @@ const CollectionDetailPage = () => {
         cameraDeleteClicked={cameraDeleteClicked}
         collectionEditClicked={collectionEditClicked}
         collectionDeleteClicked={collectionDeleteClicked}
+        newCameraClicked={newCameraClicked}
       />
       <Modal
         open={open}

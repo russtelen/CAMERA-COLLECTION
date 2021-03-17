@@ -3,6 +3,7 @@ import React from "react"
 import CameraItem from "../CameraItem"
 import EditIcon from "@material-ui/icons/Edit"
 import DeleteIcon from "@material-ui/icons/Delete"
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto"
 
 const CollectionDetail = ({
   collection,
@@ -11,6 +12,7 @@ const CollectionDetail = ({
   cameraDeleteClicked,
   collectionEditClicked,
   collectionDeleteClicked,
+  newCameraClicked,
 }) => {
   return (
     <div className="container">
@@ -30,7 +32,15 @@ const CollectionDetail = ({
               </div>
             </div>
           </div>
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-between">
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#72d95b", color: "white" }}
+              startIcon={<AddAPhotoIcon />}
+              onClick={newCameraClicked}
+            >
+              Add New Camera
+            </Button>
             <Button
               variant="contained"
               style={{ backgroundColor: "#FF5757", color: "white" }}
