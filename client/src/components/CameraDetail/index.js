@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react"
+import { makeStyles } from "@material-ui/core/styles"
 
 function getModalStyle() {
   return {
     top: `50%`,
     left: `50%`,
     transform: `translate(-50%, -50%)`,
-  };
+  }
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     maxHeight: 900,
   },
-}));
+}))
 
 const CameraDetail = ({ camera }) => {
-  const [modalStyle] = useState(getModalStyle);
+  const [modalStyle] = useState(getModalStyle)
 
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div style={modalStyle} className={classes.paper}>
@@ -47,7 +47,15 @@ const CameraDetail = ({ camera }) => {
               </div>
               <div className="col-sm-12 col-md-5">
                 <h3>Description</h3>
-                <p>{camera.description}</p>
+                <p
+                  style={{
+                    maxHeight: 250,
+                    overflow: "auto",
+                    whiteSpace: "pre-line",
+                  }}
+                >
+                  {camera.description}
+                </p>
                 <h3>Film Type</h3>
                 <p>{camera.filmType} film</p>
               </div>
@@ -56,7 +64,7 @@ const CameraDetail = ({ camera }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CameraDetail;
+export default CameraDetail

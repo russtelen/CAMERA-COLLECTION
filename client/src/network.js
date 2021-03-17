@@ -47,6 +47,24 @@ export const deleteCollectionById = async (collectionId, token) => {
     console.log(e)
   }
 }
+
+export const addNewCamera = async (data, collectionId, token) => {
+  try {
+    const res = await axios({
+      url: `/api/cameras/collections/${collectionId}`,
+      method: "post",
+      data: data,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    return res.data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export const loginUser = async (data) => {
   try {
     const res = await axios({
