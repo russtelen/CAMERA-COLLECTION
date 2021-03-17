@@ -3,12 +3,12 @@ import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos"
 
-const NewCollectionForm = ({ addNewCollection }) => {
+const NewCollectionForm = ({ submit }) => {
   const [title, setTitle] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addNewCollection({ title })
+    submit({ title })
     setTitle("")
   }
   return (
