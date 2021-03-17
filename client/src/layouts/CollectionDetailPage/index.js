@@ -1,55 +1,63 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-import CameraDetail from "../../components/CameraDetail";
-import Modal from "@material-ui/core/Modal";
-import { useParams } from "react-router-dom";
-import { getCollectionById } from "../../network";
-import CollectionDetail from "../../components/CollectionDetail";
+import React, { useState, useEffect, useContext } from "react"
+import { UserContext } from "../../context/UserContext"
+import CameraDetail from "../../components/CameraDetail"
+import Modal from "@material-ui/core/Modal"
+import { useParams } from "react-router-dom"
+import { getCollectionById } from "../../network"
+import CollectionDetail from "../../components/CollectionDetail"
 
 const CollectionDetailPage = () => {
-  const [collection, setCollection] = useState(null);
-  const { user } = useContext(UserContext);
-  const [open, setOpen] = useState(false);
-  const [camera, setCamera] = useState(null);
+  const [collection, setCollection] = useState(null)
+  const { user } = useContext(UserContext)
+  const [open, setOpen] = useState(false)
+  const [camera, setCamera] = useState(null)
 
-  const { collectionId } = useParams();
+  const { collectionId } = useParams()
 
   useEffect(() => {
-    (async () => {
-      const data = await getCollectionById(collectionId);
+    ;(async () => {
+      const data = await getCollectionById(collectionId)
 
-      let userData;
+      let userData
 
       if (data.user.username == user?.username) {
-        userData = data;
+        userData = data
       }
 
       if (userData) {
-        setCollection(userData);
+        setCollection(userData)
       }
-    })();
-  }, [collectionId]);
+    })()
+  }, [collectionId])
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
+
+  const collectionEditClicked = () => {
+    alert("show edit form")
+  }
+
+  const collectionDeleteClicked = () => {
+    alert("collection deleted")
+  }
 
   const cameraCardClicked = (data) => {
-    setCamera(data);
-    handleOpen();
-  };
+    setCamera(data)
+    handleOpen()
+  }
 
   const cameraEditClicked = () => {
-    alert("edit clicked");
-  };
+    alert("edit clicked")
+  }
 
   const cameraDeleteClicked = () => {
-    alert("delete clicked");
-  };
+    alert("delete clicked")
+  }
 
   return (
     <div>
@@ -60,6 +68,8 @@ const CollectionDetailPage = () => {
         cameraCardClicked={cameraCardClicked}
         cameraEditClicked={cameraEditClicked}
         cameraDeleteClicked={cameraDeleteClicked}
+        collectionEditClicked={collectionEditClicked}
+        collectionDeleteClicked={collectionDeleteClicked}
       />
       <Modal
         open={open}
@@ -70,7 +80,7 @@ const CollectionDetailPage = () => {
         <CameraDetail camera={camera} />
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default CollectionDetailPage;
+export default CollectionDetailPage

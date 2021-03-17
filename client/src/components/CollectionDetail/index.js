@@ -1,11 +1,16 @@
-import React from "react";
-import CameraItem from "../CameraItem";
+import { Button, IconButton } from "@material-ui/core"
+import React from "react"
+import CameraItem from "../CameraItem"
+import EditIcon from "@material-ui/icons/Edit"
+import DeleteIcon from "@material-ui/icons/Delete"
 
 const CollectionDetail = ({
   collection,
   cameraCardClicked,
   cameraEditClicked,
   cameraDeleteClicked,
+  collectionEditClicked,
+  collectionDeleteClicked,
 }) => {
   return (
     <div className="container">
@@ -15,7 +20,26 @@ const CollectionDetail = ({
         </h2>
       ) : (
         <>
-          <h1 className="text-center">{collection.title}</h1>
+          <div className="container">
+            <div className="row d-flex justify-content-center">
+              <h1 className="text-center">{collection.title}</h1>
+              <div>
+                <IconButton color="primary" onClick={collectionEditClicked}>
+                  <EditIcon />
+                </IconButton>
+              </div>
+            </div>
+          </div>
+          <div className="d-flex justify-content-end">
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<DeleteIcon />}
+              onClick={collectionDeleteClicked}
+            >
+              Delete Collection
+            </Button>
+          </div>
           <div className="my-5">
             <div className="row">
               {collection.cameras.map((camera) => (
@@ -33,7 +57,7 @@ const CollectionDetail = ({
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CollectionDetail;
+export default CollectionDetail
