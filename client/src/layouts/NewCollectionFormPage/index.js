@@ -2,6 +2,7 @@ import React from "react"
 import NewCollectionForm from "../../components/NewCollectionForm"
 import { useHistory } from "react-router-dom"
 import { addNewCollection } from "../../network"
+import toastr from "toastr"
 
 const NewCollectionFormPage = () => {
   const history = useHistory()
@@ -11,11 +12,11 @@ const NewCollectionFormPage = () => {
   const submit = async (title) => {
     const res = await addNewCollection(title, token)
     if (res == undefined) {
-      alert("Error adding new collection")
+      toastr["error"]("Error adding new collection")
       return
     }
 
-    alert(res.message)
+    toastr["success"](res.message)
     history.push("/collections")
   }
 
