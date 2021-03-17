@@ -2,15 +2,20 @@ import React, { useState, useEffect, useContext } from "react"
 import { UserContext } from "../../context/UserContext"
 import CameraDetail from "../../components/CameraDetail"
 import Modal from "@material-ui/core/Modal"
-import { useParams } from "react-router-dom"
-import { getCollectionById } from "../../network"
+import { useParams, useHistory } from "react-router-dom"
+import { getCollectionById, deleteCollectionById } from "../../network"
 import CollectionDetail from "../../components/CollectionDetail"
+import toastr from "toastr"
 
 const CollectionDetailPage = () => {
   const [collection, setCollection] = useState(null)
   const { user } = useContext(UserContext)
   const [open, setOpen] = useState(false)
   const [camera, setCamera] = useState(null)
+  // Get the token from local storage
+  const token = localStorage.getItem("token")
+
+  const history = useHistory()
 
   const { collectionId } = useParams()
 
@@ -42,8 +47,15 @@ const CollectionDetailPage = () => {
     alert("show edit form")
   }
 
-  const collectionDeleteClicked = () => {
-    alert("collection deleted")
+  const collectionDeleteClicked = async () => {
+    const res = await deleteCollectionById(collectionId, token)
+    if (res) {
+      history.push("/collections")
+      toastr["success"](res.message)
+      return
+    }
+
+    toastr["error"]("Error deleting collection")
   }
 
   const cameraCardClicked = (data) => {

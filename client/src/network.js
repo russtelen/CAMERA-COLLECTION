@@ -33,6 +33,20 @@ export const getCollectionById = async (id) => {
   return data.collection
 }
 
+export const deleteCollectionById = async (collectionId, token) => {
+  try {
+    const res = await axios({
+      url: `/api/collections/${collectionId}`,
+      method: "delete",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return res.data
+  } catch (e) {
+    console.log(e)
+  }
+}
 export const loginUser = async (data) => {
   try {
     const res = await axios({

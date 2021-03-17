@@ -33,7 +33,7 @@ const CollectionDetail = ({
           <div className="d-flex justify-content-end">
             <Button
               variant="contained"
-              color="secondary"
+              style={{ backgroundColor: "#FF5757", color: "white" }}
               startIcon={<DeleteIcon />}
               onClick={collectionDeleteClicked}
             >
