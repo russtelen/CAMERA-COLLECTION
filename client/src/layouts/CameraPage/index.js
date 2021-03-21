@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { getAllCameras } from "../../network"
 import CameraItem from "../../components/CameraItem"
+import CameraDetail from "../../components/CameraDetail"
+import Modal from "@material-ui/core/Modal"
 
 const CameraPage = () => {
   const [cameras, setCameras] = useState([])
+  const [camera, setCamera] = useState(null)
+  const [open, setOpen] = useState(false)
   const { userId } = useParams()
 
   useEffect(() => {
@@ -14,16 +18,53 @@ const CameraPage = () => {
       setCameras(camerasByUser)
     })()
   }, [])
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const cameraCardClicked = (camera) => {
+    setCamera(camera)
+    handleOpen()
+  }
+
+  const cameraEditClicked = () => {
+    alert("camera edit clicked")
+  }
+
+  const cameraDeleteClicked = () => {
+    alert("camera delete clicked")
+  }
+
   return (
     <div className="container">
       <h1 className="text-center">All Cameras</h1>
       {cameras.length > 0 ? (
-        <div className="row">
-          {cameras.map((camera) => (
-            <div className="col-12 col-md-4 my-3">
-              <CameraItem camera={camera} />
-            </div>
-          ))}
+        <div>
+          <div className="row">
+            {cameras.map((camera) => (
+              <div className="col-12 col-md-4 my-3">
+                <CameraItem
+                  camera={camera}
+                  cameraCardClicked={cameraCardClicked}
+                  cameraEditClicked={cameraEditClicked}
+                  cameraDeleteClicked={cameraDeleteClicked}
+                />
+              </div>
+            ))}
+          </div>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <CameraDetail camera={camera} />
+          </Modal>
         </div>
       ) : (
         <h2 className="text-muted text-center m-5">No Cameras Yet</h2>
