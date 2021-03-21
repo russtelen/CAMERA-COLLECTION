@@ -4,6 +4,7 @@
 const express = require("express")
 const { connectDb } = require("./models/db")
 const session = require("express-session")
+const path = require("path")
 const dotenv = require("dotenv")
 
 // REQUIRE-AUTH
@@ -52,6 +53,8 @@ app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+
+app.use(express.static(path.join(__dirname, "build")))
 
 // ==========
 // ROUTES
