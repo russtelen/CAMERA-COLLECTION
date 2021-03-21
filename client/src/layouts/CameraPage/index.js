@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory } from "react-router-dom"
-import { getAllCameras } from "../../network"
+import { getAllCameras, deleteCamera } from "../../network"
 import CameraItem from "../../components/CameraItem"
 import CameraDetail from "../../components/CameraDetail"
 import Modal from "@material-ui/core/Modal"
+import toastr from "toastr"
 
 const CameraPage = () => {
   const [cameras, setCameras] = useState([])
   const [camera, setCamera] = useState(null)
   const [open, setOpen] = useState(false)
   const history = useHistory()
+  const token = localStorage.getItem("token")
   const { userId } = useParams()
 
   useEffect(() => {
@@ -39,8 +41,16 @@ const CameraPage = () => {
     )
   }
 
-  const cameraDeleteClicked = () => {
-    alert("camera delete clicked")
+  const cameraDeleteClicked = async (camera) => {
+    const res = await deleteCamera(camera._id, token)
+    if (res) {
+      const cameras = await getAllCameras()
+      const camerasByUser = cameras.filter((r) => r.user._id === userId)
+      setCameras(camerasByUser)
+      toastr["success"](res.message)
+      return
+    }
+    toastr["error"]("Oops something went wrong")
   }
 
   return (
