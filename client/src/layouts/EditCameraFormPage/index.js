@@ -24,7 +24,7 @@ const EditCameraFormPage = () => {
     // console.log(camera)
   }, [camera])
 
-  const submit = (data) => {
+  const edit = (data) => {
     console.log(data)
   }
 
@@ -32,7 +32,7 @@ const EditCameraFormPage = () => {
     <EditCameraForm
       collectionId={collectionId}
       cameraId={cameraId}
-      submit={submit}
+      edit={edit}
       camera={camera}
     />
   )

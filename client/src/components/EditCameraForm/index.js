@@ -6,7 +6,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto"
 import MenuItem from "@material-ui/core/MenuItem"
 
-const EditCameraForm = ({ collectionId, submit, camera, cameraId }) => {
+const EditCameraForm = ({ collectionId, edit, camera, cameraId }) => {
   const [title, setTitle] = useState("")
   const [imageUrl, setImageUrl] = useState("")
   const [year, setYear] = useState("")
@@ -14,7 +14,7 @@ const EditCameraForm = ({ collectionId, submit, camera, cameraId }) => {
   const [description, setDescription] = useState("")
 
   const handleSubmit = () => {
-    submit({ title, imageUrl, year, filmType, description })
+    edit({ title, imageUrl, year, filmType, description })
   }
 
   useEffect(() => {
