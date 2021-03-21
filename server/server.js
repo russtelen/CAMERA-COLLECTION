@@ -6,7 +6,7 @@ const { connectDb } = require("./models/db")
 const session = require("express-session")
 const path = require("path")
 const dotenv = require("dotenv")
-
+const ExpressError = require("./utils/ExpressError")
 // REQUIRE-AUTH
 //---------------
 const passport = require("passport")
@@ -62,6 +62,11 @@ app.use(express.static(path.join(__dirname, "build")))
 app.use("/api/collections", collectionRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/cameras", cameraRoutes)
+
+// IF REACT ROUTER, THEN DO THIS
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build/index.html"))
+})
 
 //==============================================
 // Error Handlers
