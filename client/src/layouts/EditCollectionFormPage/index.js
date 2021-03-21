@@ -31,7 +31,11 @@ const EditCollectionFormPage = () => {
     toastr["error"]("Oops something went wrong")
   }
 
-  return <EditCollectionForm edit={edit} collection={collection} />
+  return (
+    <div className="animate__animated animate__fadeIn">
+      <EditCollectionForm edit={edit} collection={collection} />
+    </div>
+  )
 }
 
 export default EditCollectionFormPage

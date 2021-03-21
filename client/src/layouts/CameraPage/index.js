@@ -60,7 +60,7 @@ const CameraPage = () => {
         <div>
           <div className="row">
             {cameras.map((camera) => (
-              <div className="col-12 col-md-4 my-3">
+              <div className="col-12 col-md-4 my-3 animate__animated animate__flipInX">
                 <CameraItem
                   camera={camera}
                   cameraCardClicked={cameraCardClicked}

@@ -33,12 +33,14 @@ const EditCameraFormPage = () => {
   }
 
   return (
-    <EditCameraForm
-      collectionId={collectionId}
-      cameraId={cameraId}
-      edit={edit}
-      camera={camera}
-    />
+    <div className="animate__animated animate__fadeIn">
+      <EditCameraForm
+        collectionId={collectionId}
+        cameraId={cameraId}
+        edit={edit}
+        camera={camera}
+      />
+    </div>
   )
 }
 

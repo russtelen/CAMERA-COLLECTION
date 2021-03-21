@@ -53,7 +53,10 @@ const CollectionDetail = ({
           <div className="my-5">
             <div className="row">
               {collection.cameras.map((camera) => (
-                <div key={camera._id} className="col-sm-12 col-md-4 mb-4">
+                <div
+                  key={camera._id}
+                  className="col-sm-12 col-md-4 mb-4 animate__animated animate__flipInX"
+                >
                   <CameraItem
                     camera={camera}
                     cameraCardClicked={cameraCardClicked}

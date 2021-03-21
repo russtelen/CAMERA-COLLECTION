@@ -33,7 +33,10 @@ const CollectionPage = () => {
             <h3 className="text-muted">No collections yet! Add one now!</h3>
           ) : (
             collections.map((collection) => (
-              <div key={collection._id} className="col-sm-12 col-md-4 mb-4">
+              <div
+                key={collection._id}
+                className="col-sm-12 col-md-4 mb-4 animate__animated animate__flipInX"
+              >
                 <CollectionItem
                   collection={{ ...collection }}
                   cardClicked={() => cardClicked(collection._id)}

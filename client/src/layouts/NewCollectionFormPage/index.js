@@ -20,7 +20,11 @@ const NewCollectionFormPage = () => {
     history.push("/collections")
   }
 
-  return <NewCollectionForm submit={submit} />
+  return (
+    <div className="animate__animated animate__fadeIn">
+      <NewCollectionForm submit={submit} />
+    </div>
+  )
 }
 
 export default NewCollectionFormPage

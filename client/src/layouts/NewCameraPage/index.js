@@ -23,7 +23,11 @@ const NewCameraPage = () => {
     toastr["error"]("Error adding new camera to collection")
   }
 
-  return <NewCameraForm collectionId={collectionId} submit={submit} />
+  return (
+    <div className="animate__animated animate__fadeIn">
+      <NewCameraForm collectionId={collectionId} submit={submit} />
+    </div>
+  )
 }
 
 export default NewCameraPage
