@@ -43,7 +43,11 @@ const CameraDetail = ({ camera }) => {
           <div className="my-4">
             <div className="row">
               <div className="col-sm-12 col-md-7 ">
-                <img src={camera.imageUrl} className={classes.image} />
+                <img
+                  src={camera.imageUrl}
+                  className={classes.image}
+                  alt={camera.title}
+                />
               </div>
               <div className="col-sm-12 col-md-5">
                 <h3>Description</h3>

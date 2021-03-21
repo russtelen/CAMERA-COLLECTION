@@ -29,7 +29,7 @@ const CollectionDetailPage = () => {
 
       let userData
 
-      if (data.user.username == user?.username) {
+      if (data.user.username === user?.username) {
         userData = data
       }
 
@@ -82,7 +82,7 @@ const CollectionDetailPage = () => {
 
       let userData
 
-      if (data.user.username == user?.username) {
+      if (data.user.username === user?.username) {
         userData = data
       }
 

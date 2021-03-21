@@ -11,7 +11,7 @@ const NewCollectionFormPage = () => {
 
   const submit = async (title) => {
     const res = await addNewCollection(title, token)
-    if (res == undefined) {
+    if (res === undefined) {
       toastr["error"]("Error adding new collection")
       return
     }

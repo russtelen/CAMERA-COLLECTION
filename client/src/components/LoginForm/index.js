@@ -1,28 +1,18 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
+import React, { useState } from "react"
+import TextField from "@material-ui/core/TextField"
+import Button from "@material-ui/core/Button"
+import LockOpenIcon from "@material-ui/icons/LockOpen"
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-}));
 const LoginForm = ({ submit }) => {
-  const classes = useStyles();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
   const submitLoginForm = (e) => {
-    e.preventDefault();
-    submit({ username, password });
-    setUsername("");
-    setPassword("");
-  };
+    e.preventDefault()
+    submit({ username, password })
+    setUsername("")
+    setPassword("")
+  }
   return (
     <div className="container d-flex justify-content-center">
       <div style={{ width: "30vw" }}>
@@ -77,7 +67,7 @@ const LoginForm = ({ submit }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm
