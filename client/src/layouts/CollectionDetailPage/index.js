@@ -48,7 +48,7 @@ const CollectionDetailPage = () => {
   }
 
   const collectionEditClicked = () => {
-    alert("show edit form")
+    history.push(`/collections/${collectionId}/editCollection`)
   }
 
   const collectionDeleteClicked = async () => {
