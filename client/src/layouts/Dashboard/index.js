@@ -74,7 +74,7 @@ const Dashboard = () => {
             >
               <EditCameraFormPage />
             </PrivateRoute>
-            <PrivateRoute exact path="/cameras">
+            <PrivateRoute exact path="/cameras/:userId">
               <p>Cameras</p>
             </PrivateRoute>
             <PrivateRoute exact path="/addNewCollection">

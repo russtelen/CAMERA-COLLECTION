@@ -1,54 +1,54 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-import SideNav from "../../components/SideNav";
-import { useHistory } from "react-router-dom";
-import { logoutUser } from "../../network";
-import toastr from "toastr";
+import React, { useContext } from "react"
+import { UserContext } from "../../context/UserContext"
+import SideNav from "../../components/SideNav"
+import { useHistory } from "react-router-dom"
+import { logoutUser } from "../../network"
+import toastr from "toastr"
 
 const SideNavPage = () => {
-  const { user, setUser } = useContext(UserContext);
-  const history = useHistory();
+  const { user, setUser } = useContext(UserContext)
+  const history = useHistory()
   const collectionsClicked = () => {
     if (!user) {
-      history.push("/login");
-      toastr["warning"](`You need to be logged in to do that`);
-      return;
+      history.push("/login")
+      toastr["warning"](`You need to be logged in to do that`)
+      return
     }
-    history.push("/collections");
-  };
+    history.push("/collections")
+  }
 
   const camerasClicked = () => {
     if (!user) {
-      history.push("/login");
-      return toastr["warning"](`You need to be logged in to do that`);
+      history.push("/login")
+      return toastr["warning"](`You need to be logged in to do that`)
     }
-    history.push("/cameras");
-  };
+    history.push(`/cameras/${user._id}`)
+  }
 
   const addNewCollectionClicked = () => {
     if (!user) {
-      history.push("/login");
-      return toastr["warning"](`You need to be logged in to do that`);
+      history.push("/login")
+      return toastr["warning"](`You need to be logged in to do that`)
     }
-    history.push("/addNewCollection");
-  };
+    history.push("/addNewCollection")
+  }
 
   const loginClicked = () => {
-    history.push("/login");
-  };
+    history.push("/login")
+  }
 
   const registerClicked = () => {
-    history.push("/register");
-  };
+    history.push("/register")
+  }
 
   const logoutClicked = async () => {
-    const data = await logoutUser();
+    const data = await logoutUser()
     if (data) {
-      localStorage.removeItem("token");
-      setUser(null);
-      toastr["success"](`Succesfully logged out`);
+      localStorage.removeItem("token")
+      setUser(null)
+      toastr["success"](`Succesfully logged out`)
     }
-  };
+  }
   return (
     <SideNav
       user={user && user}
@@ -59,7 +59,7 @@ const SideNavPage = () => {
       registerClicked={() => registerClicked()}
       logoutClicked={() => logoutClicked()}
     />
-  );
-};
+  )
+}
 
-export default SideNavPage;
+export default SideNavPage
