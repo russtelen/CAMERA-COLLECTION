@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { getAllCameras } from "../../network"
 import CameraItem from "../../components/CameraItem"
 import CameraDetail from "../../components/CameraDetail"
@@ -9,6 +9,7 @@ const CameraPage = () => {
   const [cameras, setCameras] = useState([])
   const [camera, setCamera] = useState(null)
   const [open, setOpen] = useState(false)
+  const history = useHistory()
   const { userId } = useParams()
 
   useEffect(() => {
@@ -32,8 +33,10 @@ const CameraPage = () => {
     handleOpen()
   }
 
-  const cameraEditClicked = () => {
-    alert("camera edit clicked")
+  const cameraEditClicked = (camera) => {
+    history.push(
+      `/collections/${camera._collection._id}/editCamera/${camera._id}`
+    )
   }
 
   const cameraDeleteClicked = () => {
