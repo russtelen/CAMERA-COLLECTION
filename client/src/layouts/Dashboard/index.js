@@ -17,6 +17,7 @@ import NewCollectionFormPage from "../NewCollectionFormPage"
 import NewCameraPage from "../NewCameraPage"
 import EditCameraFormPage from "../EditCameraFormPage"
 import EditCollectionFormPage from "../EditCollectionFormPage"
+import CameraPage from "../CameraPage"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,7 +76,7 @@ const Dashboard = () => {
               <EditCameraFormPage />
             </PrivateRoute>
             <PrivateRoute exact path="/cameras/:userId">
-              <p>Cameras</p>
+              <CameraPage />
             </PrivateRoute>
             <PrivateRoute exact path="/addNewCollection">
               <NewCollectionFormPage />

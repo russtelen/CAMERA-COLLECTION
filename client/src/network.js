@@ -61,6 +61,11 @@ export const deleteCollectionById = async (collectionId, token) => {
   }
 }
 
+export const getAllCameras = async () => {
+  const res = await axios.get(`/api/cameras`)
+  return res.data.cameras
+}
+
 export const getCameraById = async (cameraId) => {
   const res = await axios.get(`/api/cameras/${cameraId}`)
   return res.data
