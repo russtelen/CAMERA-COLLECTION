@@ -71,8 +71,8 @@ const CollectionDetailPage = () => {
     alert("edit clicked")
   }
 
-  const cameraDeleteClicked = () => {
-    alert("delete clicked")
+  const cameraDeleteClicked = (data) => {
+    alert(`Camera deleted: ${data._id}`)
   }
 
   return (
