@@ -1,0 +1,3 @@
+db = <mongoDB atlas connection string>
+
+localDb = <local mongo db connection string>
