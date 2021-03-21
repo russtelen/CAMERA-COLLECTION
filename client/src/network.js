@@ -65,6 +65,22 @@ export const addNewCamera = async (data, collectionId, token) => {
   }
 }
 
+export const deleteCamera = async (cameraId, token) => {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: `/api/cameras/${cameraId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    return res.data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export const loginUser = async (data) => {
   try {
     const res = await axios({

@@ -3,7 +3,11 @@ import { UserContext } from "../../context/UserContext"
 import CameraDetail from "../../components/CameraDetail"
 import Modal from "@material-ui/core/Modal"
 import { useParams, useHistory } from "react-router-dom"
-import { getCollectionById, deleteCollectionById } from "../../network"
+import {
+  getCollectionById,
+  deleteCollectionById,
+  deleteCamera,
+} from "../../network"
 import CollectionDetail from "../../components/CollectionDetail"
 import toastr from "toastr"
 
@@ -33,6 +37,7 @@ const CollectionDetailPage = () => {
         setCollection(userData)
       }
     })()
+    console.log(collection)
   }, [collectionId])
 
   const handleOpen = () => {
@@ -71,8 +76,26 @@ const CollectionDetailPage = () => {
     alert("edit clicked")
   }
 
-  const cameraDeleteClicked = (data) => {
-    alert(`Camera deleted: ${data._id}`)
+  const cameraDeleteClicked = async (data) => {
+    const res = await deleteCamera(data._id, token)
+    if (res) {
+      const data = await getCollectionById(collectionId)
+
+      let userData
+
+      if (data.user.username == user?.username) {
+        userData = data
+      }
+
+      if (userData) {
+        setCollection(userData)
+      }
+
+      toastr["success"](res.message)
+      return
+    }
+
+    toastr["error"]("Oops something went wrong")
   }
 
   return (
