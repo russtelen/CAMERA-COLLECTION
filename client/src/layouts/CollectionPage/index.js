@@ -1,28 +1,28 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-import { useHistory } from "react-router-dom";
-import CollectionItem from "../../components/CollectionItem";
-import { getAllCollections } from "../../network";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import React, { useState, useEffect, useContext } from "react"
+import { UserContext } from "../../context/UserContext"
+import { useHistory } from "react-router-dom"
+import CollectionItem from "../../components/CollectionItem"
+import { getAllCollections } from "../../network"
+import CircularProgress from "@material-ui/core/CircularProgress"
 
 const CollectionPage = () => {
-  const [collections, setCollections] = useState([]);
-  const { user } = useContext(UserContext);
-  const history = useHistory();
+  const [collections, setCollections] = useState([])
+  const { user } = useContext(UserContext)
+  const history = useHistory()
 
   useEffect(() => {
-    (async () => {
-      const data = await getAllCollections();
-      const userData = data.filter((d) => d.user.username == user?.username);
+    ;(async () => {
+      const data = await getAllCollections()
+      const userData = data.filter((d) => d.user.username == user?.username)
       if (userData) {
-        setCollections(userData);
+        setCollections(userData)
       }
-    })();
-  }, []);
+    })()
+  }, [])
 
   const cardClicked = (id) => {
-    history.push(`/collections/${id}`);
-  };
+    history.push(`/collections/${id}`)
+  }
 
   return (
     <div>
@@ -44,7 +44,7 @@ const CollectionPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CollectionPage;
+export default CollectionPage
