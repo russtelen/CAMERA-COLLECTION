@@ -60,6 +60,12 @@ const Dashboard = () => {
             <PrivateRoute exact path="/collections/:collectionId/addNewCamera">
               <NewCameraPage />
             </PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/collections/:collectionId/editCamera/:cameraId"
+            >
+              <p>Edit Camera Form</p>
+            </PrivateRoute>
             <PrivateRoute exact path="/cameras">
               <p>Cameras</p>
             </PrivateRoute>

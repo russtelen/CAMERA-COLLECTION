@@ -37,7 +37,6 @@ const CollectionDetailPage = () => {
         setCollection(userData)
       }
     })()
-    console.log(collection)
   }, [collectionId])
 
   const handleOpen = () => {
@@ -72,8 +71,8 @@ const CollectionDetailPage = () => {
     handleOpen()
   }
 
-  const cameraEditClicked = () => {
-    alert("edit clicked")
+  const cameraEditClicked = (data) => {
+    history.push(`/collections/${collectionId}/editCamera/${data._id}`)
   }
 
   const cameraDeleteClicked = async (data) => {

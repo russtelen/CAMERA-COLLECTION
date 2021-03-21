@@ -30,6 +30,10 @@ const CameraItem = ({
     cameraDeleteClicked(camera)
   }
 
+  const setCameraOnEdit = () => {
+    cameraEditClicked(camera)
+  }
+
   return (
     <Card className={classes.root}>
       <CardActionArea onClick={() => setCamera()}>
@@ -47,11 +51,7 @@ const CameraItem = ({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => cameraEditClicked()}
-        >
+        <Button size="small" color="primary" onClick={() => setCameraOnEdit()}>
           Edit
         </Button>
         <Button
