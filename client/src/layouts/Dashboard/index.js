@@ -15,6 +15,7 @@ import LoginPage from "../LoginPage"
 import useLocalStorage from "react-use-localstorage"
 import NewCollectionFormPage from "../NewCollectionFormPage"
 import NewCameraPage from "../NewCameraPage"
+import EditCameraFormPage from "../EditCameraFormPage"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,7 +65,7 @@ const Dashboard = () => {
               exact
               path="/collections/:collectionId/editCamera/:cameraId"
             >
-              <p>Edit Camera Form</p>
+              <EditCameraFormPage />
             </PrivateRoute>
             <PrivateRoute exact path="/cameras">
               <p>Cameras</p>
