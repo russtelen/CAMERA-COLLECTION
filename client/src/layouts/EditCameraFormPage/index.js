@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react"
 import EditCameraForm from "../../components/EditCameraForm"
-import { useParams } from "react-router-dom"
-import axios from "axios"
+import { useParams, useHistory } from "react-router-dom"
+import toastr from "toastr"
+import { editCamera, getCameraById } from "../../network"
 
 const EditCameraFormPage = () => {
   const { collectionId, cameraId } = useParams()
   const [camera, setCamera] = useState(null)
+  const token = localStorage.getItem("token")
 
-  const getCameraById = async (cameraId) => {
-    const res = await axios.get(`/api/cameras/${cameraId}`)
-    return res.data
-  }
+  const history = useHistory()
 
   useEffect(() => {
     ;(async () => {
@@ -20,12 +19,17 @@ const EditCameraFormPage = () => {
     })()
   }, [cameraId])
 
-  useEffect(() => {
-    // console.log(camera)
-  }, [camera])
+  useEffect(() => {}, [camera])
 
-  const edit = (data) => {
-    console.log(data)
+  const edit = async (data) => {
+    const res = await editCamera(data, cameraId, token)
+    if (res) {
+      toastr["success"](res.message)
+      history.push(`/collections/${collectionId}`)
+      return
+    }
+
+    toastr["error"]("Oops somethings went wrong")
   }
 
   return (
