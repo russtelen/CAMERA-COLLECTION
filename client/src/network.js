@@ -33,6 +33,19 @@ export const getCollectionById = async (id) => {
   return data.collection
 }
 
+export const editCollection = async (data, collectionId, token) => {
+  const res = await axios({
+    url: `/api/collections/${collectionId}`,
+    method: "patch",
+    data: data,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  return res.data
+}
+
 export const deleteCollectionById = async (collectionId, token) => {
   try {
     const res = await axios({
