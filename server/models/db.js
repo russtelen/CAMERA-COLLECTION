@@ -12,7 +12,7 @@ let atlasDb = process.env.db
 
 module.exports.connectDb = async () => {
   try {
-    await mongoose.connect(localDb, {
+    await mongoose.connect(atlasDb, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
